@@ -1,5 +1,7 @@
 # discord.test.js
 
+Discord testing framework
+
 To install dependencies:
 
 ```bash
