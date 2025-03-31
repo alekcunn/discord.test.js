@@ -22,5 +22,5 @@ jobs:
       - name: Run full tests
         run: bun test
         env:
-          SECRET_KEY: ${{ secrets.SECRET_KEY }} 
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }} 
           CLIENT_ID: ${{ secrets.CLIENT_ID }} 
