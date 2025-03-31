@@ -7,6 +7,7 @@ describe('TestClient', () => {
     it('should log "[Test Client] listening for messages..." when connected', async () => {
 
         const testClient = new TestClient();
+        console.log("TestClient instance created");
 
         const consoleSpy = jest.spyOn(console, 'log');
 
