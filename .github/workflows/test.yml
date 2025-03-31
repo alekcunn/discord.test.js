@@ -21,6 +21,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Debug Environment Variables (Existence Check)
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        run: |
+          if [ -n "$BOT_TOKEN" ]; then
+            echo "BOT_TOKEN is set"
+          else
+            echo "BOT_TOKEN is NOT set"
+          fi
+          if [ -n "$CLIENT_ID" ]; then
+            echo "CLIENT_ID is set"
+          else
+            echo "CLIENT_ID is NOT set"
+          fi
+        
       - name: Install bun
         uses: oven-sh/setup-bun@v2
       - name: Install dependencies # (assuming your project has dependencies)
