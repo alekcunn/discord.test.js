@@ -6,6 +6,7 @@ on:
 
 jobs:
   test-ci:
+    name: Test CI manual
     runs-on: ubuntu-latest
     if: github.event_name == 'workflow_dispatch' #only run when manually triggered
     steps:
