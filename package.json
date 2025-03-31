@@ -1,0 +1,26 @@
+{
+  "name": "discord.test.js",
+  "version": "1.0.0",
+  "main": "packages/test/index.ts",
+  "module": "index.ts",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/jest": "^29.5.14"
+  },
+  "peerDependencies": {
+    "discord.js": "^14.18.0",
+    "typescript": "^5"
+  },
+  "type": "module",
+  "dependencies": {
+    "axios": "^1.0.0",
+    "dotenv": "^16.4.7",
+    "ws": "^8.0.0"
+  },
+  "exports": {
+    ".": {
+      "import": "./",
+      "require": "./packages/test/index.ts"
+    }
+  }
+}
