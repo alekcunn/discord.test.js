@@ -1,34 +1,25 @@
 name: CI with Bun Test
 
 on:
-  workflow_run:
-    workflows: ["Basic bun tests"]
-    types:
-      - completed
+
+  workflow_dispatch:
 
 jobs:
-
-  full-tests:
-    name: Full Tests (On Approval)
+  test-ci:
     runs-on: ubuntu-latest
-
+    if: github.event_name == 'workflow_dispatch' #only run when manually triggered
     steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.workflow_run.pull_requests[0].head.ref }}
-          repository: ${{ github.event.workflow_run.pull_requests[0].head.repo.full_name }}
-          fetch-depth: 0
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
+
       - name: Install dependencies
         run: bun install
       - name: Run full tests
         run: bun test
         env:
-          SECRET_KEY: ${{ secrets.SECRET_KEY }} # Access your secrets here
-      - name: Request changes if tests fail
-        if: failure()
-        run: gh pr review ${{ github.event.workflow_run.pull_requests[0].number }} --request-changes --body "Tests failed."
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }} 
+          CLIENT_ID: ${{ secrets.CLIENT_ID }} 
